@@ -1,4 +1,5 @@
 import express, { json, urlencoded } from "express";
+import productsRoutes from "./routes/products/index";
 
 const port = 3000;
 const app = express();
@@ -10,7 +11,7 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-// app.use("/products", productsRoutes);
+app.use("/products", productsRoutes);
 // app.use("/auth", authRoutes);
 
 app.listen(port, () => {
