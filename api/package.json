@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node --import=tsx --watch --env-file=.env src/index.ts",
+    "dev": "NODE_ENV=dev node --import=tsx --watch --env-file=.env src/index.ts",
     "build": "tsc",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
@@ -22,6 +22,7 @@
     "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
     "pg": "^8.13.0",
+    "serverless-http": "^3.2.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
