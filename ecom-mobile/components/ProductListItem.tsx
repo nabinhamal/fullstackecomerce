@@ -5,7 +5,7 @@ import { Heading } from "@/components/ui/heading";
 import { Link } from "expo-router";
 import { Pressable } from "react-native";
 
-export default function ProductListItem({ product }) {
+export default function ProductListItem({ product }: any) {
   return (
     <Link href={`/product/${product.id}`} asChild>
       <Pressable className="flex-1">
