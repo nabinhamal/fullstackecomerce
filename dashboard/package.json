@@ -25,6 +25,7 @@
     "@gluestack/ui-next-adapter": "^2.1.12",
     "@legendapp/motion": "^2.4.0",
     "autoprefixer": "^10.4.20",
+    "dayjs": "^1.11.13",
     "nativewind": "^4.0.36",
     "next": "14.2.16",
     "react": "^18",
