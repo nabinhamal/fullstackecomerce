@@ -4,23 +4,25 @@ import {
   pgTable,
   timestamp,
   varchar,
-} from "drizzle-orm/pg-core";
-import { usersTable } from "./usersSchema.js";
-import { productsTable } from "./productsSchema.js";
-import { createInsertSchema } from "drizzle-zod";
-import { z } from "zod";
+} from 'drizzle-orm/pg-core';
+import { usersTable } from './usersSchema.js';
+import { productsTable } from './productsSchema.js';
+import { createInsertSchema } from 'drizzle-zod';
+import { z } from 'zod';
 
-export const ordersTable = pgTable("orders", {
+export const ordersTable = pgTable('orders', {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   createdAt: timestamp().notNull().defaultNow(),
-  status: varchar({ length: 50 }).notNull().default("New"),
+  status: varchar({ length: 50 }).notNull().default('New'),
 
   userId: integer()
     .references(() => usersTable.id)
     .notNull(),
+
+  stripePaymentIntentId: varchar({ length: 255 }),
 });
 
-export const orderItemsTable = pgTable("order_items", {
+export const orderItemsTable = pgTable('order_items', {
   id: integer().primaryKey().generatedAlwaysAsIdentity(),
   orderId: integer()
     .references(() => ordersTable.id)

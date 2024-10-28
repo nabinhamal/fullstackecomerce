@@ -1,7 +1,7 @@
-import { Request, Response } from "express";
-import { db } from "../../db/index.js";
-import { orderItemsTable, ordersTable } from "../../db/ordersSchema.js";
-import { eq } from "drizzle-orm";
+import { Request, Response } from 'express';
+import { db } from '../../db/index.js';
+import { orderItemsTable, ordersTable } from '../../db/ordersSchema.js';
+import { eq } from 'drizzle-orm';
 
 export async function createOrder(req: Request, res: Response) {
   try {
@@ -10,7 +10,7 @@ export async function createOrder(req: Request, res: Response) {
     const userId = req.userId;
     console.log(userId);
     if (!userId) {
-      res.status(400).json({ message: "Invalid order data" });
+      res.status(400).json({ message: 'Invalid order data' });
     }
 
     const [newOrder] = await db
@@ -32,7 +32,7 @@ export async function createOrder(req: Request, res: Response) {
     res.status(201).json({ ...newOrder, items: newOrderItems });
   } catch (e) {
     console.log(e);
-    res.status(400).json({ message: "Invalid order data" });
+    res.status(400).json({ message: 'Invalid order data' });
   }
 }
 
@@ -67,7 +67,7 @@ export async function getOrder(req: Request, res: Response) {
       .leftJoin(orderItemsTable, eq(ordersTable.id, orderItemsTable.orderId));
 
     if (orderWithItems.length === 0) {
-      res.status(404).send("Order not found");
+      res.status(404).send('Order not found');
     }
 
     const mergedOrder = {
@@ -93,7 +93,7 @@ export async function updateOrder(req: Request, res: Response) {
       .returning();
 
     if (!updatedOrder) {
-      res.status(404).send("Order not found");
+      res.status(404).send('Order not found');
     } else {
       res.status(200).json(updatedOrder);
     }
